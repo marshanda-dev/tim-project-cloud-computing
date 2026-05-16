@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&amp;family=Manrope:wght@200;300;400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#1a1b22",
+                        "surface-container-high": "#282a31",
+                        "inverse-on-surface": "#2f3037",
+                        "tertiary": "#c3c0ff",
+                        "outline-variant": "#444748",
+                        "surface-dim": "#12131a",
+                        "on-tertiary": "#1d00a5",
+                        "surface-container-highest": "#33343c",
+                        "outline": "#8e9192",
+                        "on-secondary-container": "#342800",
+                        "on-secondary-fixed-variant": "#574500",
+                        "on-background": "#e2e1eb",
+                        "error": "#ffb4ab",
+                        "on-tertiary-fixed": "#0f0069",
+                        "surface-bright": "#383940",
+                        "on-surface": "#e2e1eb",
+                        "on-primary-container": "#797777",
+                        "on-secondary": "#3c2f00",
+                        "on-surface-variant": "#c4c7c7",
+                        "on-primary": "#313030",
+                        "inverse-primary": "#5f5e5e",
+                        "on-tertiary-fixed-variant": "#3323cc",
+                        "primary-container": "#050505",
+                        "background": "#12131a",
+                        "secondary-container": "#af8d11",
+                        "on-secondary-fixed": "#241a00",
+                        "secondary-fixed-dim": "#e9c349",
+                        "tertiary-fixed": "#e2dfff",
+                        "on-tertiary-container": "#6761fe",
+                        "surface-variant": "#33343c",
+                        "on-primary-fixed-variant": "#474646",
+                        "on-error": "#690005",
+                        "tertiary-fixed-dim": "#c3c0ff",
+                        "secondary": "#e9c349",
+                        "inverse-surface": "#e2e1eb",
+                        "error-container": "#93000a",
+                        "on-error-container": "#ffdad6",
+                        "surface": "#12131a",
+                        "tertiary-container": "#020026",
+                        "primary-fixed": "#e5e2e1",
+                        "surface-container-lowest": "#0c0e14",
+                        "surface-tint": "#c9c6c5",
+                        "secondary-fixed": "#ffe088",
+                        "primary-fixed-dim": "#c9c6c5",
+                        "surface-container": "#1e1f26",
+                        "primary": "#c9c6c5",
+                        "on-primary-fixed": "#1c1b1b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "32px",
+                        "section-gap": "160px",
+                        "margin-desktop": "80px",
+                        "margin-mobile": "24px"
+                    },
+                    "fontFamily": {
+                        "display-xl": ["Manrope"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "label-sm": ["Inter"],
+                        "headline-lg": ["Manrope"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-xl": ["80px", { "lineHeight": "90px", "letterSpacing": "0.05em", "fontWeight": "200" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "letterSpacing": "0", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "0.02em", "fontWeight": "300" }],
+                        "headline-md": ["32px", { "lineHeight": "40px", "letterSpacing": "0.01em", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "headline-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "0.02em", "fontWeight": "300" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "letterSpacing": "0", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .starlight-border {
+            border: 0.5px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(40px);
+            border: 0.5px solid rgba(255, 255, 255, 0.1);
+        }
+        .text-glow {
+            text-shadow: 0 0 20px rgba(233, 195, 73, 0.3);
+        }
+        body {
+            background-color: #12131a;
+            color: #e2e1eb;
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+  <nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 md:px-margin-desktop py-4 bg-background/60 backdrop-blur-[20px] border-b border-white/[0.05]">
+    
+    <div class="font-space text-lg md:text-xl font-bold tracking-[0.15em] text-on-surface cursor-pointer" onclick="window.location.href='index.html'">
+      CELESTIA
+    </div>
+
+    <div class="hidden md:flex gap-8 lg:gap-12 font-label-sm text-[11px] uppercase tracking-[0.15em]">
+      <a class="text-on-surface/50 hover:text-on-surface transition-all duration-300 ease-in-out" href="index.html">The Sun</a>
+      <a class="text-on-surface/50 hover:text-on-surface transition-all duration-300 ease-in-out" href="earth.html">Inner Planets</a>
+      <a class="text-on-surface/50 hover:text-on-surface transition-all duration-300 ease-in-out" href="deep.html">Deep Space</a>
+    </div>
+
+    <div class="flex items-center">
+      <button onclick="window.location.href='index.html'" class="border border-on-surface/20 text-on-surface px-5 py-2 text-[10px] font-label-sm uppercase tracking-widest hover:bg-on-surface/5 hover:border-on-surface/40 transition-all duration-300 rounded-[2px]">
+        ← Back
+      </button>
+    </div>
+
+  </nav>
+</body>
+<main class="relative pt-32 min-h-screen">
+<!-- Hero Section -->
+<section class="relative w-full h-[90vh] flex items-center px-margin-desktop">
+<div class="absolute inset-0 z-0 overflow-hidden">
+<img alt="Saturn" class="w-full h-full object-cover object-center scale-110 opacity-80" data-alt="An ultra-realistic 3D render of Saturn with its iconic golden rings viewed from a cinematic low angle. Dramatic side lighting casts long, sharp shadows of the rings across the gas giant's atmospheric surface. The scene is set against the deep, silent void of space with soft amber glows highlighting the planet's curvature. The aesthetic is inspired by high-end luxury minimalist advertising, focusing on clean lines and cosmic scale." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMP2Xx43aC6JvQqfTWTzqRWcwILfJaYQeR4LYdqyRcxUuSD3z85lDl5C6dUFDSCGF_ix2hvOl3yme-7cOINyKGE0l1qYdG05DQ8g3otCBJuQpN89JH0Q0NvVqguLRlwshajFX92a8d10pfjnDQhWfBwaD3fkoMo5zymO7SR9IzErOj6R0sbyIaZbtoYBePs2XbxCAjUsZTb612GnYW-sswwZBuLNfNZ9C1ZnXn3Yibzf0aCbcGfySDSu-J71QI6vx-Zlr-AxPnzA"/>
+<!-- Atmospheric Gradient Overlay -->
+<div class="absolute inset-0 bg-gradient-to-r from-background via-transparent to-transparent"></div>
+</div>
+<div class="relative z-10 max-w-4xl">
+<div class="mb-6 flex items-center gap-4">
+<span class="w-12 h-px bg-secondary"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-[0.3em] text-secondary">Outer Rim Investigation</span>
+</div>
+<h1 class="font-display-xl text-display-xl mb-8 leading-tight">Lord of <br/>the Rings.</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl leading-relaxed opacity-80">
+                    A masterpiece of celestial mechanics. Saturn's rings span hundreds of thousands of kilometers, yet are as thin as a few dozen meters.
+                </p>
+</div>
+<!-- Floating Interactive Data Points -->
+<div class="absolute top-1/2 left-[60%] -translate-y-1/2 hidden lg:block">
+<div class="relative w-[400px] h-[400px]">
+<!-- Rock Point -->
+<div class="absolute top-10 left-10 group cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 bg-secondary rounded-full bloom-glow"></div>
+<div class="glass-panel px-4 py-2 opacity-0 group-hover:opacity-100 transition-all duration-700 -translate-x-4 group-hover:translate-x-0">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary">[ROCK]</span>
+</div>
+</div>
+<div class="w-px h-16 bg-gradient-to-b from-secondary/40 to-transparent ml-1 mt-1"></div>
+</div>
+<!-- Ice Point -->
+<div class="absolute bottom-20 right-0 group cursor-pointer">
+<div class="flex flex-col items-end">
+<div class="glass-panel px-4 py-2 mb-3 opacity-0 group-hover:opacity-100 transition-all duration-700 translate-y-4 group-hover:translate-y-0 text-right">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-tertiary">[WATER ICE]</span>
+<div class="text-[10px] text-on-surface-variant mt-1">99.9% COMPOSITION</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 bg-tertiary rounded-full bloom-glow"></div>
+</div>
+</div>
+</div>
+<!-- Dust Point -->
+<div class="absolute top-[40%] right-[30%] group cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 bg-primary rounded-full bloom-glow"></div>
+<div class="glass-panel px-4 py-2 opacity-0 group-hover:opacity-100 transition-all duration-700 -translate-x-4 group-hover:translate-x-0">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary">[MICRO DUST]</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Technical Sidebar/Data Section -->
+<section class="px-margin-desktop py-section-gap grid grid-cols-12 gap-gutter items-start">
+<div class="col-span-12 lg:col-span-4 sticky top-40">
+<div class="glass-panel p-12 space-y-10">
+<div class="space-y-2">
+<p class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Mean Diameter</p>
+<h3 class="font-headline-md text-headline-md text-secondary">116,460 <span class="text-label-sm">KM</span></h3>
+</div>
+<div class="space-y-2">
+<p class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Day Length</p>
+<h3 class="font-headline-md text-headline-md text-secondary">10.7 <span class="text-label-sm">HOURS</span></h3>
+</div>
+<div class="space-y-2">
+<p class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Satellite Count</p>
+<div class="flex items-end gap-3">
+<h3 class="font-headline-md text-headline-md text-secondary">146</h3>
+<span class="font-label-sm text-label-sm pb-2 text-on-surface-variant">KNOWN MOONS</span>
+</div>
+</div>
+<div class="pt-8 border-t border-white/10">
+<button class="w-full starlight-border py-4 font-label-sm uppercase tracking-[0.2em] hover:bg-white/5 transition-all duration-500">
+                            Access Full Archive
+                        </button>
+</div>
+</div>
+</div>
+<!-- Descriptive Bento Grid -->
+<div class="col-span-12 lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="glass-panel p-10 md:col-span-2">
+<span class="material-symbols-outlined text-secondary mb-6" style="font-variation-settings: 'FILL' 1;">Minus</span>
+<h4 class="font-headline-md text-headline-md mb-4">Orbital Mechanics</h4>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                        Saturn’s rings are not solid. They are composed of billions of individual particles, ranging in size from tiny dust grains to massive boulders as big as mountains. These particles are almost entirely water ice, with a trace component of rocky material. 
+                    </p>
+</div>
+<div class="glass-panel p-10 flex flex-col justify-between aspect-square">
+<h4 class="font-label-sm text-label-sm uppercase tracking-widest text-secondary">Atmosphere</h4>
+<div>
+<div class="font-display-xl text-headline-lg mb-2">96%</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Hydrogen composition, driving extreme pressure and supersonic winds.</p>
+</div>
+</div>
+<div class="glass-panel p-10 flex flex-col justify-between aspect-square">
+<h4 class="font-label-sm text-label-sm uppercase tracking-widest text-secondary">Magnetosphere</h4>
+<div class="space-y-4">
+<div class="w-full h-px bg-gradient-to-r from-secondary to-transparent"></div>
+<p class="font-body-md text-body-md text-on-surface-variant">Smaller than Jupiter's but significantly more influential on its ring system stability.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full px-margin-desktop py-section-gap flex flex-col md:flex-row justify-between items-center gap-gutter border-t border-white/5">
+<div class="font-display-xl text-headline-md opacity-80">CELESTIA</div>
+<div class="flex gap-8 font-label-sm text-label-sm tracking-widest">
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-400" href="#">Privacy</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-400" href="#">Terms</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-400" href="#">Research</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-400" href="#">Archives</a>
+</div>
+<div class="font-label-sm text-label-sm tracking-widest opacity-60">
+            © 2024 CELESTIA. BEYOND THE INFINITE.
+        </div>
+</footer>
+</body></html>

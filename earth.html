@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>CELESTIA: The Solar Journey</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=300;400;600&family=Manrope:wght=200;300;400;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <script id="tailwind-config">
+          tailwind.config = {
+            darkMode: "class",
+            theme: {
+              extend: {
+                "colors": {
+                        "tertiary-fixed": "#e2dfff",
+                        "on-secondary": "#3c2f00",
+                        "surface-container-low": "#1a1b22",
+                        "secondary-container": "#af8d11",
+                        "surface-container": "#1e1f26",
+                        "on-background": "#e2e1eb",
+                        "on-primary": "#313030",
+                        "tertiary-fixed-dim": "#c3c0ff",
+                        "on-surface-variant": "#c4c7c7",
+                        "background": "#12131a",
+                        "secondary": "#e9c349",
+                        "tertiary-container": "#020026",
+                        "inverse-surface": "#e2e1eb",
+                        "on-error": "#690005",
+                        "surface-container-lowest": "#0c0e14",
+                        "primary": "#c9c6c5",
+                        "on-secondary-fixed": "#241a00",
+                        "surface-bright": "#383940",
+                        "on-primary-container": "#797777",
+                        "surface-dim": "#12131a",
+                        "on-tertiary-fixed-variant": "#3323cc",
+                        "surface-variant": "#33343c",
+                        "surface-container-highest": "#33343c",
+                        "on-surface": "#e2e1eb",
+                        "on-error-container": "#ffdad6",
+                        "primary-fixed": "#e5e2e1",
+                        "secondary-fixed-dim": "#e9c349",
+                        "outline-variant": "#444748",
+                        "outline": "#8e9192",
+                        "on-tertiary-container": "#6761fe",
+                        "surface-tint": "#c9c6c5",
+                        "primary-container": "#050505",
+                        "on-tertiary-fixed": "#0f0069",
+                        "error": "#ffb4ab",
+                        "on-secondary-container": "#342800",
+                        "primary-fixed-dim": "#c9c6c5",
+                        "on-secondary-fixed-variant": "#574500",
+                        "tertiary": "#c3c0ff",
+                        "inverse-on-surface": "#2f3037",
+                        "on-primary-fixed": "#1c1b1b",
+                        "secondary-fixed": "#ffe088",
+                        "surface-container-high": "#282a31",
+                        "surface": "#12131a",
+                        "error-container": "#93000a",
+                        "on-tertiary": "#1d00a5",
+                        "on-primary-fixed-variant": "#474646",
+                        "inverse-primary": "#5f5e5e"
+                },
+                "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                },
+                "spacing": {
+                        "margin-desktop": "80px",
+                        "margin-mobile": "24px",
+                        "gutter": "32px",
+                        "section-gap": "160px"
+                },
+                "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Manrope"],
+                        "headline-lg-mobile": ["Manrope"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Manrope"],
+                        "label-sm": ["Inter"],
+                        "display-xl": ["Manrope"]
+                },
+                "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "letterSpacing": "0", "fontWeight": "400"}],
+                        "headline-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "0.02em", "fontWeight": "300"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "0.02em", "fontWeight": "300"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0", "fontWeight": "400"}],
+                        "headline-md": ["32px", {"lineHeight": "40px", "letterSpacing": "0.01em", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                        "display-xl": ["80px", {"lineHeight": "90px", "letterSpacing": "0.05em", "fontWeight": "200"}]
+                }
+              }
+            }
+          }
+    </script>
+    <style>
+        body {
+            background-color: #030305;
+            color: #e2e1eb;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        .font-space {
+            font-family: 'Manrope', sans-serif;
+            letter-spacing: 0.15em;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 0.5px solid rgba(255, 255, 255, 0.08);
+        }
+        .starlight-border {
+            border: 0.5px solid rgba(255, 255, 255, 0.1);
+        }
+        .stellar-glow {
+            box-shadow: 0 0 40px rgba(233, 195, 73, 0.1);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+        }
+        #planet-img {
+            transition: transform 0.8s cubic-bezier(0.3, 1, 0.4, 1), opacity 0.7s cubic-bezier(0.3, 1, 0.4, 1);
+            will-change: transform, opacity;
+        }
+        .planet-shadow {
+            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.95) 100%);
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .page-view {
+            transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+    </style>
+</head>
+<body class="dark overflow-x-hidden bg-surface text-on-surface">
+
+    <div class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 md:px-20 py-8 pointer-events-none">
+        <h1 class="font-space text-2xl md:text-3xl tracking-[0.15em] text-white font-extrabold uppercase pointer-events-auto">
+            CELESTIA
+        </h1>
+    </div>
+
+    <div id="page-home" class="page-view relative w-full min-h-screen flex flex-col justify-between pt-24 z-10">
+        <div class="absolute inset-0 z-0 opacity-20 pointer-events-none">
+            <div class="absolute w-[200vw] h-[200vw] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-[spin_300s_linear_infinite]" 
+                 style="background-image: radial-gradient(white 1px, transparent 1px); background-size: 60px 60px;"></div>
+        </div>
+
+        <main class="w-full my-auto flex flex-col md:flex-row items-center justify-between px-6 md:px-20 relative z-10 gap-10 md:gap-0">
+            <div id="planet-stats" class="w-full md:w-1/4 grid grid-cols-2 md:flex md:flex-col gap-4 md:gap-8 transition-all duration-700 transform opacity-0 -translate-x-10">
+                <div>
+                    <p class="text-[10px] uppercase tracking-widest text-white/40 mb-1">Massa Eksoplanet</p>
+                    <p id="stat-mass" class="font-space text-sm md:text-lg font-medium text-white/90">-</p>
+                </div>
+                <div>
+                    <p class="text-[10px] uppercase tracking-widest text-white/40 mb-1">Kecepatan Orbit</p>
+                    <p id="stat-speed" class="font-space text-sm md:text-lg font-medium text-white/90">-</p>
+                </div>
+                <div>
+                    <p class="text-[10px] uppercase tracking-widest text-white/40 mb-1">Jarak Tempuh</p>
+                    <p id="stat-distance" class="font-space text-sm md:text-lg font-medium text-white/90">-</p>
+                </div>
+                <div>
+                    <p class="text-[10px] uppercase tracking-widest text-white/40 mb-1">Suhu Udara</p>
+                    <p id="stat-temp" class="font-space text-sm md:text-lg font-medium text-amber-400">-</p>
+                </div>
+            </div>
+
+            <div class="relative w-[60vw] h-[60vw] md:w-[35vw] md:h-[35vw] flex items-center justify-center">
+                <div class="absolute w-[106%] h-[106%] border border-white/5 rounded-full pointer-events-none"></div>
+                <div class="absolute w-[118%] h-[118%] border border-dashed border-white/10 rounded-full pointer-events-none animate-[spin_240s_linear_infinite]"></div>
+                
+                <div id="planet-sphere" class="w-full h-full rounded-full overflow-hidden relative flex items-center justify-center bg-black/40 shadow-inner transition-shadow duration-1000">
+                    <img id="planet-img" src="screen1.png" alt="Cosmos Target" class="w-full h-full object-cover opacity-0 scale-50">
+                    <div class="absolute inset-0 planet-shadow pointer-events-none mix-blend-multiply"></div>
+                </div>
+            </div>
+
+            <div id="planet-info" class="w-full md:w-1/4 text-left md:text-right flex flex-col items-start md:items-end gap-3 transition-all duration-700 transform opacity-0 translate-x-10">
+                <span class="text-[10px] uppercase tracking-[0.4em] text-secondary font-semibold">Discovery Mission</span>
+                <h1 id="planet-name" class="font-space text-3xl md:text-4xl font-light uppercase tracking-widest text-white">-</h1>
+                <p id="planet-desc" class="text-xs md:text-sm text-white/60 font-light leading-relaxed max-w-sm md:text-justify">-</p>
+                <button id="btn-explore-more" class="mt-4 border border-white/20 text-white px-5 py-2.5 text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300">
+                    Explore Details
+                </button>
+            </div>
+        </main>
+
+        <footer class="w-full px-6 md:px-16 py-8 flex flex-col items-center gap-6 z-20">
+            
+            <div class="flex justify-center">
+                <button onclick="handleMainAction()" class="bg-secondary text-on-secondary px-5 py-15 text-xs font-bold uppercase tracking-[0.2em] hover:scale-105 transition-all duration-300 stellar-glow font-space">
+                     MAIN MENU
+                </button>
+            </div>
+
+            <div class="w-full h-[1px] bg-gradient-to-r from-transparent via-white/15 to-transparent"></div>
+            
+            <nav class="w-full overflow-x-auto no-scrollbar flex items-center justify-start md:justify-center gap-8 md:gap-14 py-2">
+                <button onclick="changeSpaceTarget(0)" class="nav-bottom-btn whitespace-nowrap text-xs tracking-[0.2em] uppercase font-light opacity-40 hover:opacity-100 transition-all duration-300">Matahari</button>
+                <button onclick="changeSpaceTarget(1)" class="nav-bottom-btn whitespace-nowrap text-xs tracking-[0.2em] uppercase font-light opacity-40 hover:opacity-100 transition-all duration-300">Mars</button>
+                <button onclick="changeSpaceTarget(2)" class="nav-bottom-btn whitespace-nowrap text-xs tracking-[0.2em] uppercase font-light opacity-40 hover:opacity-100 transition-all duration-300">Saturnus</button>
+                <button onclick="changeSpaceTarget(3)" class="nav-bottom-btn whitespace-nowrap text-xs tracking-[0.2em] uppercase font-light opacity-40 hover:opacity-100 transition-all duration-300">Bumi</button>
+            </nav>
+        </footer>
+    </div>
+
+    <div id="page-detail-earth" class="page-view hidden relative w-full min-h-screen flex flex-col justify-between opacity-0 translate-y-10 z-10">
+        <main class="relative min-h-screen flex flex-col items-center justify-center pt-32 overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img alt="Earth View" class="w-full h-full object-cover opacity-60 mix-blend-lighten" src="screen4.png" style="filter: brightness(0.7) contrast(1.15);"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-[#050505]/50"></div>
+            </div>
+            
+            <div class="relative z-10 text-center px-margin-mobile">
+                <span class="font-label-sm text-label-sm uppercase tracking-[0.4em] text-secondary mb-4 block">TERRA • SOL III</span>
+                <h1 class="font-display-xl text-display-xl md:text-[120px] leading-tight text-white drop-shadow-2xl">
+                    Our Fragile <span class="block italic font-light opacity-80">Oasis.</span>
+                </h1>
+            </div>
+
+            <section class="relative z-10 w-full px-margin-mobile md:px-margin-desktop mt-section-gap mb-24 grid grid-cols-1 md:grid-cols-12 gap-gutter">
+                <div class="md:col-start-2 md:col-span-5 flex flex-col justify-center">
+                    <div class="w-12 h-[1px] bg-secondary mb-8"></div>
+                    <p class="font-headline-lg text-headline-lg leading-snug text-white opacity-90">
+                        A marble of blue and green, suspended in the silent void. Earth is a testament to the miraculous conditions that sustain life.
+                    </p>
+                    <p class="mt-8 font-body-lg text-body-lg text-on-surface-variant max-w-md">
+                        Isolated by the vast distances of the cosmos, our home remains the only known harbor for consciousness in the inner solar system.
+                    </p>
+                    <div class="mt-12 flex gap-gutter">
+                        <button onclick="window.location.href='index.html'" class="border border-white/20 text-white px-8 py-4 font-label-sm text-label-sm uppercase tracking-widest hover:bg-white/5 transition-all duration-400">
+                          ← Return to Solar Journey
+                        </button>
+                    </div>
+                </div>
+
+                <div class="md:col-start-8 md:col-span-4 mt-12 md:mt-0">
+                    <div class="glass-panel p-12 flex flex-col gap-10 stellar-glow">
+                        <div class="flex items-center gap-4">
+                            <span class="material-symbols-outlined text-secondary text-3xl">public</span>
+                            <h3 class="font-headline-md text-headline-md text-white">Planetary Specs</h3>
+                        </div>
+                        <div class="flex flex-col gap-8">
+                            <div class="flex flex-col gap-2 border-l border-white/10 pl-6 hover:border-secondary transition-colors duration-500">
+                                <span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Distance from Sun</span>
+                                <span class="font-display-xl text-headline-lg text-white">149.6M <span class="text-body-md font-normal opacity-50">km</span></span>
+                            </div>
+                            <div class="flex flex-col gap-2 border-l border-white/10 pl-6 hover:border-secondary transition-colors duration-500">
+                                <span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Orbit Period</span>
+                                <span class="font-display-xl text-headline-lg text-white">365.25 <span class="text-body-md font-normal opacity-50">Days</span></span>
+                            </div>
+                            <div class="flex flex-col gap-2 border-l border-white/10 pl-6 hover:border-secondary transition-colors duration-500">
+                                <span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Population</span>
+                                <span class="font-display-xl text-headline-lg text-white">8 Billion+</span>
+                            </div>
+                        </div>
+                        <div class="pt-8 border-t border-white/10">
+                            <div class="flex justify-between items-center text-on-surface-variant font-label-sm text-label-sm uppercase tracking-widest">
+                                <span>Orbital Velocity</span>
+                                <span class="text-white">29.78 km/s</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="relative z-10 w-full px-margin-mobile md:px-margin-desktop mb-24">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter">
+                    <div class="glass-panel p-8 md:col-span-2 flex flex-col justify-between min-h-[260px]">
+                        <span class="font-label-sm text-label-sm text-secondary uppercase tracking-[0.3em]">[ SURFACE COMPOSITION ]</span>
+                        <div class="mt-auto">
+                            <h4 class="font-headline-md text-headline-md text-white mb-4">Nitrogen-Oxygen Rich</h4>
+                            <p class="font-body-md text-on-surface-variant">Unique balance of 78% Nitrogen and 21% Oxygen, protected by a magnetic field that shields the biosphere from solar winds.</p>
+                        </div>
+                    </div>
+                    <div class="glass-panel p-8 flex flex-col justify-between">
+                        <span class="material-symbols-outlined text-white text-4xl mb-4">tsunami</span>
+                        <div>
+                            <h4 class="font-label-sm text-label-sm text-white uppercase tracking-widest mb-2">Water Coverage</h4>
+                            <p class="font-display-xl text-headline-lg text-white">71%</p>
+                        </div>
+                    </div>
+                    <div class="glass-panel p-8 flex flex-col justify-between border-secondary/30">
+                        <span class="material-symbols-outlined text-white text-4xl mb-4">thermostat</span>
+                        <div>
+                            <h4 class="font-label-sm text-label-sm text-white uppercase tracking-widest mb-2">Mean Temp</h4>
+                            <p class="font-display-xl text-headline-lg text-white">15°C</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="w-full px-margin-mobile md:px-margin-desktop py-12 flex flex-col md:flex-row justify-between items-center gap-gutter border-t border-white/5 bg-transparent">
+            <div class="font-display-xl text-headline-md text-on-surface tracking-[0.1em]">CELESTIA</div>
+            <div class="flex gap-gutter font-label-sm text-label-sm tracking-widest">
+                <a class="text-on-surface-variant hover:text-secondary transition-colors duration-400 opacity-80" href="#">Privacy</a>
+                <a class="text-on-surface-variant hover:text-secondary transition-colors duration-400 opacity-80" href="#">Terms</a>
+                <a class="text-on-surface-variant hover:text-secondary transition-colors duration-400 opacity-80" href="#">Research</a>
+            </div>
+            <div class="font-label-sm text-label-sm tracking-widest text-on-surface-variant uppercase">
+                © 2026 CELESTIA. BEYOND THE INFINITE.
+            </div>
+        </footer>
+    </div>
+
+    <div class="fixed top-1/4 left-10 w-[1px] h-32 bg-gradient-to-b from-transparent via-white/10 to-transparent pointer-events-none opacity-30"></div>
+    <div class="fixed bottom-1/4 right-10 w-[1px] h-32 bg-gradient-to-b from-transparent via-white/10 to-transparent pointer-events-none opacity-30"></div>
+
+    <script>
+        const spaceObjects = [
+            {
+                name: "The Sun",
+                mass: "1.989 × 10^30 kg",
+                speed: "0 km/s (Statik)",
+                distance: "Pusat Orbit",
+                temp: "+5.500 °C",
+                desc: "Inti energi utama pelindung tata surya. Bola plasma mahadahsyat yang gravitasinya mengikat seluruh planet, memancarkan radiasi kosmik pelindung sistem.",
+                img: "screen1.png",
+                glow: "0 0 80px rgba(245, 158, 11, 0.35)",
+                hasDetail: false
+            },
+            {
+                name: "Mars",
+                mass: "6.39 × 10^23 kg",
+                speed: "24.0 km/s",
+                distance: "227.9 Juta KM",
+                temp: "-62 °C",
+                desc: "Dunia gurun merah penuh besi beroksida. Menyimpan ngarai vulkanik purba terbesar Olympus Mons, menjadikannya target utama kolonisasi masa depan.",
+                img: "screen2.png",
+                glow: "0 0 80px rgba(239, 68, 68, 0.30)",
+                hasDetail: false
+            },
+            {
+                name: "Saturn",
+                mass: "5.683 × 10^26 kg",
+                speed: "9.7 km/s",
+                distance: "1.4 Milyar KM",
+                temp: "-140 °C",
+                desc: "Raksasa gas megah berdensitas rendah yang dikelilingi ribuan cincin es murni setebal hitungan meter. Akumulasi partikel pemantul cahaya menakjubkan.",
+                img: "screen3.png",
+                glow: "0 0 80px rgba(234, 179, 8, 0.30)",
+                hasDetail: false
+            },
+            {
+                name: "Earth",
+                mass: "5.972 × 10^24 kg",
+                speed: "29.8 km/s",
+                distance: "149.6 Juta KM",
+                temp: "+15 °C",
+                desc: "Satu-satunya surga biosfer yang diketahui di alam semesta hampa. Komposisi seimbang laudan air cair serta lapisan nitrogen-oksigen penopang kehidupan.",
+                img: "screen4.png",
+                glow: "0 0 80px rgba(59, 130, 246, 0.35)",
+                hasDetail: true
+            }
+        ];
+
+        let isAnimating = false;
+        let currentTargetIndex = 0;
+
+        // SEKARANG BERFUNGSI UNTUK KEMBALI KE INDEX.HTML
+        function handleMainAction() {
+            window.location.href = "index.html"; 
+        }
+
+        // SWIPER CORE LOGIC
+        function changeSpaceTarget(index) {
+            if (isAnimating) return;
+            isAnimating = true;
+            currentTargetIndex = index;
+
+            const statsPanel = document.getElementById('planet-stats');
+            const infoPanel = document.getElementById('planet-info');
+            const planetImg = document.getElementById('planet-img');
+            const planetSphere = document.getElementById('planet-sphere');
+            const bottomButtons = document.querySelectorAll('.nav-bottom-btn');
+
+            planetImg.style.transform = 'scale(2.6) rotate(15deg)';
+            planetImg.style.opacity = '0';
+            statsPanel.style.opacity = '0';
+            statsPanel.style.transform = 'translateX(-30px)';
+            infoPanel.style.opacity = '0';
+            infoPanel.style.transform = 'translateX(30px)';
+
+            setTimeout(() => {
+                const data = spaceObjects[index];
+
+                document.getElementById('stat-mass').innerText = data.mass;
+                document.getElementById('stat-speed').innerText = data.speed;
+                document.getElementById('stat-distance').innerText = data.distance;
+                document.getElementById('stat-temp').innerText = data.temp;
+                document.getElementById('planet-name').innerText = data.name;
+                document.getElementById('planet-desc').innerText = data.desc;
+                planetImg.src = data.img;
+                planetSphere.style.boxShadow = data.glow;
+
+                const exploreBtn = document.getElementById('btn-explore-more');
+                if (data.hasDetail) {
+                    exploreBtn.style.display = "block";
+                    exploreBtn.onclick = () => navigateToPage('detail-earth');
+                } else {
+                    exploreBtn.style.display = "none";
+                }
+
+                bottomButtons.forEach((btn, i) => {
+                    if(i === index) {
+                        btn.classList.remove('opacity-40');
+                        btn.classList.add('opacity-100', 'text-secondary', 'font-semibold');
+                    } else {
+                        btn.classList.remove('opacity-100', 'text-secondary', 'font-semibold');
+                        btn.classList.add('opacity-40');
+                    }
+                });
+
+                planetImg.style.transition = 'none';
+                planetImg.style.transform = 'scale(0.05) rotate(-20deg)';
+                planetImg.offsetHeight; // Force layout reflow
+
+                planetImg.style.transition = 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease-out';
+                planetImg.style.transform = 'scale(1) rotate(0deg)';
+                planetImg.style.opacity = '1';
+
+                statsPanel.style.transform = 'translateX(0)';
+                statsPanel.style.opacity = '1';
+                infoPanel.style.transform = 'translateX(0)';
+                infoPanel.style.opacity = '1';
+
+                setTimeout(() => { isAnimating = false; }, 800);
+            }, 400);
+        }
+
+        // NAVIGATION CONTROLLER
+        function navigateToPage(pageId) {
+            const homePage = document.getElementById('page-home');
+            const detailPage = document.getElementById('page-detail-earth');
+
+            if (pageId === 'detail-earth') {
+                homePage.style.opacity = '0';
+                homePage.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    homePage.classList.add('hidden');
+                    detailPage.classList.remove('hidden');
+                    window.scrollTo({ top: 0, behavior: 'instant' });
+                    setTimeout(() => {
+                        detailPage.style.opacity = '1';
+                        detailPage.style.transform = 'translateY(0)';
+                    }, 50);
+                }, 400);
+            } else {
+                detailPage.style.opacity = '0';
+                detailPage.style.transform = 'translateY(10px)';
+                setTimeout(() => {
+                    detailPage.classList.add('hidden');
+                    homePage.classList.remove('hidden');
+                    setTimeout(() => {
+                        homePage.style.opacity = '1';
+                        homePage.style.transform = 'scale(1)';
+                    }, 50);
+                }, 400);
+            }
+        }
+
+        window.onload = () => {
+            changeSpaceTarget(0);
+        };
+    </script>
+</body>
+</html>

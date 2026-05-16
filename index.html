@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>CELESTIA: The Solar Journey</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Manrope:wght@200;300;400;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <link rel="stylesheet" href="style.css">
+
+    <script id="tailwind-config">
+          tailwind.config = {
+            darkMode: "class",
+            theme: {
+              extend: {
+                "colors": {
+                        "tertiary-fixed": "#e2dfff",
+                        "on-secondary": "#3c2f00",
+                        "surface-container-low": "#1a1b22",
+                        "secondary-container": "#af8d11",
+                        "surface-container": "#1e1f26",
+                        "on-background": "#e2e1eb",
+                        "on-primary": "#313030",
+                        "tertiary-fixed-dim": "#c3c0ff",
+                        "on-surface-variant": "#c4c7c7",
+                        "background": "#12131a",
+                        "secondary": "#e9c349",
+                        "tertiary-container": "#020026",
+                        "inverse-surface": "#e2e1eb",
+                        "on-error": "#690005",
+                        "surface-container-lowest": "#0c0e14",
+                        "primary": "#c9c6c5",
+                        "on-secondary-fixed": "#241a00",
+                        "surface-bright": "#383940",
+                        "on-primary-container": "#797777",
+                        "surface-dim": "#12131a",
+                        "on-tertiary-fixed-variant": "#3323cc",
+                        "surface-variant": "#33343c",
+                        "surface-container-highest": "#33343c",
+                        "on-surface": "#e2e1eb",
+                        "on-error-container": "#ffdad6",
+                        "primary-fixed": "#e5e2e1",
+                        "secondary-fixed-dim": "#e9c349",
+                        "outline-variant": "#444748",
+                        "outline": "#8e9192",
+                        "on-tertiary-container": "#6761fe",
+                        "surface-tint": "#c9c6c5",
+                        "primary-container": "#050505",
+                        "on-tertiary-fixed": "#0f0069",
+                        "error": "#ffb4ab",
+                        "on-secondary-container": "#342800",
+                        "primary-fixed-dim": "#c9c6c5",
+                        "on-secondary-fixed-variant": "#574500",
+                        "tertiary": "#c3c0ff",
+                        "inverse-on-surface": "#2f3037",
+                        "on-primary-fixed": "#1c1b1b",
+                        "secondary-fixed": "#ffe088",
+                        "surface-container-high": "#282a31",
+                        "surface": "#12131a",
+                        "error-container": "#93000a",
+                        "on-tertiary": "#1d00a5",
+                        "on-primary-fixed-variant": "#474646",
+                        "inverse-primary": "#5f5e5e"
+                },
+                "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                },
+                "spacing": {
+                        "margin-desktop": "80px",
+                        "margin-mobile": "24px",
+                        "gutter": "32px",
+                        "section-gap": "160px"
+                },
+                "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Manrope"],
+                        "headline-lg-mobile": ["Manrope"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Manrope"],
+                        "label-sm": ["Inter"],
+                        "display-xl": ["Manrope"]
+                },
+                "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "letterSpacing": "0", "fontWeight": "400"}],
+                        "headline-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "0.02em", "fontWeight": "300"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "0.02em", "fontWeight": "300"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0", "fontWeight": "400"}],
+                        "headline-md": ["32px", {"lineHeight": "40px", "letterSpacing": "0.01em", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                        "display-xl": ["80px", {"lineHeight": "90px", "letterSpacing": "0.05em", "fontWeight": "200"}]
+                }
+              }
+            }
+          }
+    </script>
+    <style>
+        .starlight-border {
+            border: 0.5px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(40px);
+            border: 0.5px solid rgba(255, 255, 255, 0.1);
+        }
+        .stellar-glow {
+            box-shadow: 0 0 30px rgba(233, 195, 73, 0.15);
+        }
+        body {
+            background-color: #050505;
+            color: #e2e1eb;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="dark overflow-x-hidden">
+
+    <nav class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-desktop py-8 bg-white/10 dark:bg-white/5 backdrop-blur-[40px] border-b border-white/10">
+        <div class="font-display-xl text-headline-md tracking-[0.1em] text-on-surface dark:text-on-surface font-extrabold uppercase">
+            CELESTIA
+        </div>
+        <div class="hidden md:flex gap-12">
+            <a class="font-body-md text-body-md uppercase tracking-[0.2em] text-secondary dark:text-secondary-fixed-dim border-b border-secondary pb-1 hover:text-on-surface transition-all duration-500 ease-in-out scale-105" href="#hero">The Sun</a>
+            <a class="font-body-md text-body-md uppercase tracking-[0.2em] text-on-surface/60 dark:text-on-surface/60 hover:text-on-surface transition-all duration-500 ease-in-out scale-105" href="earth.html">Inner Planets</a>
+            <a class="font-body-md text-body-md uppercase tracking-[0.2em] text-on-surface/60 dark:text-on-surface/60 hover:text-on-surface transition-all duration-500 ease-in-out scale-105" href="saturn.html">Outer Planets</a>
+            <a class="font-body-md text-body-md uppercase tracking-[0.2em] text-on-surface/60 dark:text-on-surface/60 hover:text-on-surface transition-all duration-500 ease-in-out scale-105" href="deep.html">Deep Space</a>
+        </div>
+        <button class="bg-secondary text-on-secondary px-8 py-3 font-label-sm text-label-sm uppercase tracking-widest transition-transform duration-700 hover:scale-105 active:scale-95 stellar-glow">
+            Mission
+        </button>
+    </nav>
+
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden" id="hero">
+        <div class="absolute inset-0 z-0">
+            <img alt="Solar flare" class="w-full h-full object-cover brightness-75 scale-105 parallax-bg" src="screen1.png"/>
+            <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-[#050505]"></div>
+        </div>
+        <div class="relative z-10 text-center space-y-8 px-margin-mobile">
+            <span class="font-label-sm text-label-sm uppercase tracking-[0.4em] text-secondary/80 block">Celestial Core</span>
+            <h1 class="font-display-xl text-display-xl tracking-[0.15em] text-white">BEHOLD THE SOURCE</h1>
+            <div class="w-px h-24 bg-gradient-to-b from-secondary to-transparent mx-auto mt-12"></div>
+        </div>
+    </section>
+
+    <section class="relative min-h-screen flex items-center px-margin-desktop py-section-gap overflow-hidden" id="earth">
+        <div class="absolute inset-0 z-0 opacity-40">
+            <img alt="Earth from space" class="w-full h-full object-cover parallax-bg" src="screen4.png"/>
+        </div>
+        <div class="grid grid-cols-12 w-full relative z-10 gap-gutter">
+            <div class="col-span-12 md:col-span-6 lg:col-span-5 space-y-12">
+                <div class="space-y-4">
+                    <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary">Location: Solar Orbit 3</span>
+                    <h2 class="font-headline-lg text-headline-lg text-white">Our Fragile Oasis</h2>
+                    <p class="font-body-lg text-body-lg text-on-surface-variant max-w-md">The only known harbor of life in the infinite void. A delicate balance of chemistry and physics suspended in a silent, cosmic ocean.</p>
+                </div>
+                <div class="glass-panel p-10 flex flex-col gap-8">
+                    <div class="flex justify-between items-end border-b border-white/10 pb-6">
+                        <div class="space-y-1">
+                            <span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface/40">Distance from Sun</span>
+                            <div class="font-headline-md text-headline-md text-secondary">149.6M km</div>
+                        </div>
+                        <span class="material-symbols-outlined text-secondary/40 text-4xl">distance</span>
+                    </div>
+                    <div class="flex justify-between items-end">
+                        <div class="space-y-1">
+                            <span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface/40">Current Population</span>
+                            <div class="font-headline-md text-headline-md text-secondary">8 Billion+</div>
+                        </div>
+                        <span class="material-symbols-outlined text-secondary/40 text-4xl">groups</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="relative min-h-screen flex items-center justify-end px-margin-desktop py-section-gap" id="mars">
+        <div class="absolute inset-0 z-0 grayscale opacity-60 mix-blend-screen">
+            <img alt="Mars surface" class="w-full h-full object-cover parallax-bg" src="screen2.png"/>
+        </div>
+        <div class="grid grid-cols-12 w-full relative z-10 gap-gutter">
+            <div class="col-span-12 md:col-start-7 md:col-span-6 lg:col-start-8 lg:col-span-5 space-y-12">
+                <div class="space-y-4 text-right">
+                    <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary">Destination: Ares Prime</span>
+                    <h2 class="font-headline-lg text-headline-lg text-white">The Red Frontier</h2>
+                    <p class="font-body-lg text-body-lg text-on-surface-variant ml-auto max-w-md">A desolate world of iron and dust. Mars stands as humanity's first true stepping stone into the greater mysteries of the cosmos.</p>
+                </div>
+                <div class="glass-panel p-10 grid grid-cols-2 gap-12">
+                    <div class="space-y-2">
+                        <span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface/40">Surface Temp</span>
+                        <div class="font-headline-md text-headline-md text-on-surface">-65° C</div>
+                        <div class="h-0.5 w-12 bg-primary"></div>
+                    </div>
+                    <div class="space-y-2">
+                        <span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface/40">Gravity</span>
+                        <div class="font-headline-md text-headline-md text-on-surface">3.721 m/s²</div>
+                        <div class="h-0.5 w-12 bg-primary"></div>
+                    </div>
+                    <div class="col-span-2 pt-4">
+                        <button class="w-full border border-white/20 py-4 font-label-sm text-label-sm uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-colors duration-500">
+                            View Topography
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="relative min-h-screen flex flex-col items-center justify-center px-margin-desktop overflow-hidden" id="saturn">
+        <div class="absolute inset-0 z-0">
+            <img alt="Saturn's rings" class="w-full h-full object-cover parallax-bg" src="screen3.png"/>
+            <div class="absolute inset-0 bg-black/40"></div>
+        </div>
+        <div class="relative z-10 w-full max-w-6xl space-y-24">
+            <div class="text-center space-y-6">
+                <span class="font-label-sm text-label-sm uppercase tracking-[0.5em] text-secondary">The Great Sentinel</span>
+                <h2 class="font-display-xl text-headline-lg tracking-[0.1em] text-white">Lord of the Rings</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="glass-panel p-12 text-center group hover:scale-[1.02] transition-transform duration-700">
+                    <span class="material-symbols-outlined text-primary text-5xl mb-6">expand_content</span>
+                    <span class="block font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant mb-2">Mean Diameter</span>
+                    <div class="font-headline-md text-headline-md">116,460 km</div>
+                </div>
+                <div class="glass-panel p-12 text-center group hover:scale-[1.02] transition-transform duration-700">
+                    <span class="material-symbols-outlined text-primary text-5xl mb-6">nights_stay</span>
+                    <span class="block font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant mb-2">Satellite Count</span>
+                    <div class="font-headline-md text-headline-md">146 Moons</div>
+                </div>
+                <div class="glass-panel p-12 text-center group hover:scale-[1.02] transition-transform duration-700">
+                    <span class="material-symbols-outlined text-primary text-5xl mb-6">history</span>
+                    <span class="block font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant mb-2">Orbital Period</span>
+                    <div class="font-headline-md text-headline-md">29.4 Years</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-black py-section-gap flex flex-col items-center justify-center text-center px-margin-mobile">
+        <div class="max-w-3xl space-y-12">
+            <h2 class="font-headline-lg text-headline-lg text-white">The journey continues beyond our reach.</h2>
+            <div class="flex flex-col md:flex-row gap-6 justify-center">
+                <button class="bg-secondary text-on-secondary px-12 py-5 font-label-sm text-label-sm uppercase tracking-[0.2em] stellar-glow hover:brightness-110 transition-all">Start Exploration</button>
+                <button class="starlight-border text-white px-12 py-5 font-label-sm text-label-sm uppercase tracking-[0.2em] hover:bg-white/5 transition-all">Research Archives</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="w-full px-margin-desktop py-section-gap flex flex-col md:flex-row justify-between items-center gap-gutter border-t border-white/5 bg-transparent">
+        <div class="font-display-xl text-headline-md tracking-[0.1em] font-extrabold">CELESTIA</div>
+        <div class="flex flex-col md:flex-row gap-12 text-center md:text-left">
+            <div class="flex gap-8">
+                <a class="font-label-sm text-label-sm tracking-widest text-on-surface-variant hover:text-secondary transition-colors duration-400 opacity-80 hover:opacity-100" href="#">Privacy</a>
+                <a class="font-label-sm text-label-sm tracking-widest text-on-surface-variant hover:text-secondary transition-colors duration-400 opacity-80 hover:opacity-100" href="#">Terms</a>
+                <a class="font-label-sm text-label-sm tracking-widest text-on-surface-variant hover:text-secondary transition-colors duration-400 opacity-80 hover:opacity-100" href="#">Research</a>
+                <a class="font-label-sm text-label-sm tracking-widest text-on-surface-variant hover:text-secondary transition-colors duration-400 opacity-80 hover:opacity-100" href="#">Archives</a>
+            </div>
+            <div class="font-label-sm text-label-sm tracking-widest text-on-surface/40 uppercase">
+                © 2024 CELESTIA. BEYOND THE INFINITE.
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
